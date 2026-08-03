@@ -46,9 +46,7 @@ ANOMALY_KEYWORDS = [
 
 # Villes / aéroports de départ qui t'intéressent (au moins un requis si la liste
 # n'est pas vide ; laisse la liste vide pour ne filtrer que sur ANOMALY_KEYWORDS)
-DEPARTURE_KEYWORDS = [
-    "paris", "cdg", "orly", "france", "geneva", "genève", "gva",
-]
+DEPARTURE_KEYWORDS = []
 
 # Un article ne remonte que si (mot-clé anomalie) ET (mot-clé départ), sauf si
 # DEPARTURE_KEYWORDS est vide.
