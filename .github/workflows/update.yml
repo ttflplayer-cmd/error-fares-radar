@@ -1,1 +1,36 @@
+name: Mise à jour du radar error fares
 
+on:
+  schedule:
+    # Toutes les 30 minutes. Syntaxe cron : minute heure jour mois jour-semaine
+    - cron: "*/30 * * * *"
+  workflow_dispatch: {}   # permet de lancer le workflow manuellement depuis l'onglet Actions
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+
+      - name: Installer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Installer les dépendances
+        run: pip install -r requirements.txt
+
+      - name: Lancer l'agent
+        run: python agent.py
+
+      - name: Commit + push si quelque chose a changé
+        run: |
+          git config user.name "error-fares-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add index.html history.json seen.json
+          git diff --quiet --cached || git commit -m "Mise à jour automatique du radar"
+          git push
