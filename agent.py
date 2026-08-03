@@ -39,10 +39,7 @@ FEEDS = [
 ]
 
 # Mots-clés qui indiquent une vraie anomalie de prix (au moins un requis)
-ANOMALY_KEYWORDS = [
-    "error fare", "mistake fare", "fuel dump", "glitch", "bug fare",
-    "pricing error", "price error", "erreur de prix", "bug tarifaire",
-]
+ANOMALY_KEYWORDS = ["flight", "vol", "a"]
 
 # Villes / aéroports de départ qui t'intéressent (au moins un requis si la liste
 # n'est pas vide ; laisse la liste vide pour ne filtrer que sur ANOMALY_KEYWORDS)
