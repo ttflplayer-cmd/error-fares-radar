@@ -34,7 +34,6 @@ import feedparser
 # Flux RSS surveillés. Tu peux en ajouter / retirer librement.
 FEEDS = [
     {"name": "Fly4free", "url": "https://www.fly4free.com/feed/"},
-    {"name": "Secret Flying", "url": "https://www.secretflying.com/posts/feed/"},
     {"name": "Reddit r/faredrop", "url": "https://www.reddit.com/r/faredrop/.rss"},
     {"name": "Reddit r/awardtravel", "url": "https://www.reddit.com/r/awardtravel/.rss"},
 ]
