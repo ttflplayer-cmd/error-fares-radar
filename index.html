@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radar // Error Fares</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+  :root{
+    --bg:#0b1220;
+    --panel:#101a2e;
+    --panel-edge:#1c2b47;
+    --text:#e8ecf1;
+    --muted:#7c8aa3;
+    --amber:#f5a623;
+    --alert:#ff5a36;
+    --mono: 'IBM Plex Mono', ui-monospace, monospace;
+    --sans: 'Inter', system-ui, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse at top, #101c33 0%, var(--bg) 60%);
+    color:var(--text);
+    font-family:var(--sans);
+    min-height:100vh;
+    padding:32px 20px 80px;
+  }
+  .wrap{max-width:960px;margin:0 auto;}
+
+  header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:16px;
+    border-bottom:1px solid var(--panel-edge);
+    padding-bottom:20px;
+    margin-bottom:28px;
+  }
+  .brand-eyebrow{
+    font-family:var(--mono);
+    letter-spacing:.18em;
+    font-size:11px;
+    color:var(--amber);
+    text-transform:uppercase;
+    margin:0 0 6px;
+  }
+  h1{
+    margin:0;
+    font-family:var(--mono);
+    font-weight:700;
+    font-size:clamp(24px,4vw,34px);
+    letter-spacing:-0.01em;
+  }
+  .meta{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--muted);
+    text-align:right;
+  }
+  .meta strong{color:var(--text);}
+
+  .stat-row{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-bottom:28px;
+  }
+  .stat{
+    font-family:var(--mono);
+    background:var(--panel);
+    border:1px solid var(--panel-edge);
+    border-radius:6px;
+    padding:10px 16px;
+    font-size:12px;
+    color:var(--muted);
+  }
+  .stat b{
+    display:block;
+    color:var(--text);
+    font-size:20px;
+    font-weight:700;
+  }
+
+  .board{
+    border:1px solid var(--panel-edge);
+    border-radius:10px;
+    overflow:hidden;
+    background:var(--panel);
+  }
+  .board-head{
+    display:grid;
+    grid-template-columns: 130px 1fr 150px;
+    gap:12px;
+    padding:12px 20px;
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--muted);
+    border-bottom:1px solid var(--panel-edge);
+  }
+  .row{
+    display:grid;
+    grid-template-columns: 130px 1fr 150px;
+    gap:12px;
+    padding:16px 20px;
+    border-bottom:1px solid var(--panel-edge);
+    align-items:start;
+    animation: flap .5s ease;
+  }
+  .row:last-child{border-bottom:none;}
+  .row:hover{background:#141f38;}
+
+  @keyframes flap{
+    from{opacity:0; transform: translateY(-4px);}
+    to{opacity:1; transform:none;}
+  }
+
+  .src{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--amber);
+    text-transform:uppercase;
+    letter-spacing:.05em;
+  }
+  .title a{
+    color:var(--text);
+    text-decoration:none;
+    font-weight:600;
+    font-size:15px;
+    line-height:1.4;
+  }
+  .title a:hover{color:var(--amber); text-decoration:underline;}
+  .summary{
+    margin-top:6px;
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.5;
+  }
+  .when{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--muted);
+    text-align:right;
+    white-space:nowrap;
+  }
+
+  .empty{
+    padding:60px 20px;
+    text-align:center;
+    color:var(--muted);
+    font-family:var(--mono);
+    font-size:13px;
+  }
+
+  footer{
+    margin-top:28px;
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--muted);
+    text-align:center;
+  }
+
+  @media (max-width:640px){
+    .board-head{display:none;}
+    .row{grid-template-columns:1fr; gap:6px;}
+    .when{text-align:left;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <p class="brand-eyebrow">Veille tarifaire &middot; V1</p>
+      <h1>RADAR // ERROR FARES</h1>
+    </div>
+    <div class="meta">Dernière actualisation<br><strong>03/08/2026 09:28 UTC</strong></div>
+  </header>
+
+  <div class="stat-row">
+    <div class="stat"><b>0</b>alertes en mémoire</div>
+    <div class="stat"><b>0</b>nouvelles ce run</div>
+    <div class="stat"><b>4</b>sources surveillées</div>
+  </div>
+
+  <div class="board">
+    <div class="board-head">
+      <span>Source</span>
+      <span>Alerte</span>
+      <span>Détectée</span>
+    </div>
+    <div class="empty">Aucune alerte pour l'instant.<br>
+Le script tourne, mais rien ne correspond encore à tes filtres — relance-le plus tard,
+ou élargis ANOMALY_KEYWORDS / DEPARTURE_KEYWORDS dans agent.py.</div>
+  </div>
+
+  <footer>Généré par agent.py &middot; relance le script pour rafraîchir cette page</footer>
+</div>
+</body>
+</html>
